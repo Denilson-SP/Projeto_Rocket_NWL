@@ -1,0 +1,241 @@
+/*exemplo de css */
+/* resetar os espaços abaixo  para limpar o css, você usa "*" */
+
+* {
+    margin:0;
+    padding: 0;
+    box-sizing:border-box;
+}
+
+/* para tirar o ponto da lista a gente utiliza "list-style = none " */
+
+ul {
+    list-style: none;
+}
+
+body {
+
+    background-image: url(./bg.jpg);
+    background-position: top center;
+    background-size: 100% auto;
+    background-repeat: no-repeat;
+    background-color: #121214;
+}
+
+/* Aqui na body * ele usa para pegar todos os elementos da body e sans-serif tem as ranhuras  */
+
+body * {
+    font-family: "Inter", sans-serif;
+    line-height: 160%;
+}
+
+/* main * {
+    border:1px solid red
+
+    as bordas nesse caso era para mostrar os espaçamentos entre as linhas da tela
+}*/
+
+/* No main foi feito uma alteração de gap, para isso funcionar foi usado 
+display:flex + flex-direction (para continuar no mesmo formato horizontal) 
+*/
+
+/* na secao se pode usar secao "flex-wrape=wrap" quando ha muitos elementos ele joga para baixo ajustando dentro da caixa*/
+
+main {
+
+    max-width: 580px;
+    width: 90%;
+    margin: 32px auto;
+    display: flex;
+    flex-direction: column;
+    gap: 24px;
+    margin-top: 32px;
+}
+
+/* background-image: linear-gradiente para fazer uma cor misturada */
+section {
+
+    color: #fff;
+    background-image: linear-gradient(90deg, #9572fc 0%, #43e7ad);
+    padding-top: 4px;
+    border-radius: 10px;
+    
+}
+
+section div {
+
+    background-color: #2a2634;
+    padding: 32px;
+    padding-top: 24px;
+    border-radius: 8px;
+  
+}
+
+/* algumas coisas o proprio navegador ja vai vir pro exemplo font-height não ira mudar caso não coloque */
+section h2 {
+
+    letter-spacing: -0.47px;
+
+}
+
+section p {
+
+    letter-spacing: -0.18;
+    color: #a1a1aa;
+}
+
+/* display = block ele bloqueia o proximo ou unico conteudo dentro da caixa para ficar inline
+   display-flex = ele a alinha todas as caixas fazendo inlene
+   gap = é a função que da o espaçamento entre caixas e ele só funciona com display-flex 
+   */
+
+/*dentro da ul colocar espaço no top da margem */
+
+section ul {
+
+    display:flex;
+    gap: 16px;
+    margin-top: 24px;
+ 
+}
+
+section ul li {
+
+    transition: transform .3s;
+}
+
+section ul li:hover{
+
+    transform: scale(1.1);
+}
+
+/* agora vamos alterar os formatos das classes */
+
+.games-list img {
+
+    width: 90px;
+    border-radius: 8px;
+
+}
+
+.chanell-list img {
+
+    width: 90px;
+    border-radius: 50%;
+    border: 1px solid #443e54;
+
+}
+
+/* agora vamos trabalhar com imagem profile */
+
+header {
+
+   text-align: center;
+   padding-top: 32px;
+
+}
+/* 1° observação : na header div teve uma jogada para alinhar o imagem ao centro, primeiro no main temos margin 32px auto,
+a text-aling não reconhece div por não ter propriedade de texto, então na header div coloca margin:auto,
+para se alinhar ao meio automaticamente*/
+
+/*2° Observação : para deixar a borda redonda da cor da linear-gradient, usou display flex, para alinhar o bloco, a imagem some e depois
+usamos um padding para dar preenchimento para sobrepor a imagem com a borderradius*/
+
+header div {
+
+    width: 120px;
+    margin:auto;
+    background-image: linear-gradient(90deg, #9572fc 0%, #43e7ad);
+    border-radius: 50%;
+    display: flex;
+    padding: 4px;
+
+    transition: transform .3s;
+}
+
+/* observação : para fazer expansão quando passar o mouse, temos que direcionar hover, + transform scale(1.1) que é 100:100
+e para fazer uma transição suave usamos transition: transform .3s(segundos você decedi) */
+
+header div:hover {
+
+    transform: scale(1.1);
+
+
+}
+
+ header div img {
+
+    border-radius: 50%;
+    width: 100%;
+
+ }
+
+ /* animação de cima para baixo */
+
+ /*Observação: para fazer a animação precisamos da @keyframes + (Nome que você vai dar para o lugar ) no caso fromTOp
+ para iniciar a animação, temos que colocar { from = da onde vem} e { to = para onde vai } e depois o transform, 
+ onde colocara os eixos y ou x, no caso e o y na vertical + header div com animation: from top (nome de que você do lugar)
+ .7s, a opacidade é para dar o efeito de sumir e aparecer.
+  keyframes so usa as propriedades sem nenhuma regra */
+
+ /* Observação1: backwards ele serve para ele puxa as propriedades de volta da keyframes  */
+
+ header div {
+
+    animation: fromTop .7s .2s backwards;
+ }
+
+ @keyframes fromTop {
+    from {
+        opacity: 0;
+        transform: translateY(-30px);
+
+    }
+
+    to {
+        opacity: 1;
+        transform: translateY(0);
+    }
+    
+ }
+
+ /* observação: nessa etapa vamos fazer os cartões se mexer, conforme a tela for carregando
+ para isso usaremos section:nth-child que é para selecionar os "filhos" daquele elemento e 
+ animation-delay para atrasar a animação e o backwards para manter o padrão da keyframes */
+
+
+main section {
+
+    animation: fromBottom .7s .4s backwards;
+}
+
+main section:nth-child(1) {
+
+    animation-delay: 0s;
+}
+
+main section:nth-child(2) {
+
+    animation-delay: .4s;
+}
+
+main section:nth-child(3) {
+
+    animation-delay: .8s;
+}
+
+
+
+ @keyframes fromBottom {
+    from {
+        opacity: 0;
+        transform: translateY(30px);
+
+    }
+
+    to {
+        opacity: 1;
+        transform: translateY(0);
+    }
+    
+ }
